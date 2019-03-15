@@ -10,8 +10,10 @@ async function init() {
     getHTML('https://www.instagram.com/wesbos/'),
   ]);
 
-  const twitterFollowers = await getTwitterFollowers(twitterHTML);
-  const instagramFollowers = await getInstagramFollowers(instagramHTML);
+  const [twitterFollowers, instagramFollowers] = await Promise.all([
+    getTwitterFollowers(twitterHTML),
+    getInstagramFollowers(instagramHTML),
+  ]);
 
   console.log(`You have ${twitterFollowers} followers on Twitter.`);
   console.log(`You have ${instagramFollowers} followers on Instagram.`);
