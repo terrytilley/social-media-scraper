@@ -1,0 +1,9 @@
+# Social Media Scraper
+
+Create `db.json` in root.
+
+## Wesbos YouTube tutorial
+
+[Part 1](https://www.youtube.com/watch?v=rWc0xqroY4U)
+
+[Part 2](https://www.youtube.com/watch?v=9dIHjegGeKo)

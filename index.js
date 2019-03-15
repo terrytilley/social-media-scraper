@@ -1,22 +1,23 @@
-import {
-  getHTML,
-  getTwitterFollowers,
-  getInstagramFollowers,
-} from './lib/scraper';
+import logger from 'morgan';
+import express from 'express';
 
-async function init() {
-  const [twitterHTML, instagramHTML] = await Promise.all([
-    getHTML('https://twitter.com/wesbos/'),
-    getHTML('https://www.instagram.com/wesbos/'),
+import { getTwitterCount, getInstagramCount } from './lib/scraper';
+import './lib/cron';
+
+const app = express();
+const PORT = process.env.PORT || 8000;
+
+app.use(logger('dev'));
+
+app.get('/scrape', async (req, res) => {
+  const [twitterCount, instagramCount] = await Promise.all([
+    getTwitterCount('https://twitter.com/wesbos/'),
+    getInstagramCount('https://www.instagram.com/wesbos/'),
   ]);
 
-  const [twitterFollowers, instagramFollowers] = await Promise.all([
-    getTwitterFollowers(twitterHTML),
-    getInstagramFollowers(instagramHTML),
-  ]);
+  return res.json({ twitterCount, instagramCount });
+});
 
-  console.log(`You have ${twitterFollowers} followers on Twitter.`);
-  console.log(`You have ${instagramFollowers} followers on Instagram.`);
-}
-
-init();
+app.listen(PORT, () =>
+  console.log(`Scraper running on http://localhost:${PORT}`)
+);
