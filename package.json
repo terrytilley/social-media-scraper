@@ -4,7 +4,7 @@
   "description": "Social Media Scraper",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r esm index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -19,7 +19,11 @@
       "pre-commit": "lint-staged"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "esm": "^3.2.17"
+  },
   "devDependencies": {
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
