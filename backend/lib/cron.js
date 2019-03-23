@@ -1,4 +1,4 @@
 import cron from 'node-cron';
 import { runCron } from './scraper';
 
-cron.schedule('* * * * *', () => runCron());
+cron.schedule('0,30 * * * *', () => runCron());

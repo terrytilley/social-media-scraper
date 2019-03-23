@@ -3,8 +3,9 @@ import logger from 'morgan';
 import express from 'express';
 
 import { getTwitterCount, getInstagramCount } from './lib/scraper';
-import './lib/cron';
+import { uniqueCount } from './lib/utils';
 import db from './lib/db';
+import './lib/cron';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -22,8 +23,11 @@ app.get('/scrape', async (req, res) => {
 });
 
 app.get('/data', async (req, res) => {
-  const twitter = db.value();
-  return res.json(twitter);
+  const { twitter, instagram } = db.value();
+  const uniqueTwitter = uniqueCount(twitter);
+  const uniqueInstagram = uniqueCount(instagram);
+
+  return res.json({ twitter: uniqueTwitter, instagram: uniqueInstagram });
 });
 
 app.listen(PORT, () =>
