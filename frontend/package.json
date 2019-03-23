@@ -1,0 +1,20 @@
+{
+  "name": "social-media-scraper-frontend",
+  "version": "1.0.0",
+  "description": "Social Media Scraper",
+  "main": "index.js",
+  "scripts": {
+    "start": "next",
+    "dev": "next dev",
+    "build": "next build"
+  },
+  "dependencies": {
+    "date-fns": "^1.30.1",
+    "next": "^8.0.3",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
+  },
+  "devDependencies": {},
+  "author": "Terry Tilley <terry@terrytilley.com>",
+  "license": "ISC"
+}
